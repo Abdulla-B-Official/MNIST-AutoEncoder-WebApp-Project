@@ -42,7 +42,7 @@ export default function App() {
     };
     
     checkBackend();
-    const interval = setInterval(checkBackend, 10000);
+    const interval = setInterval(checkBackend, 60000);
     return () => clearInterval(interval);
   }, []);
 

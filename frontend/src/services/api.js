@@ -60,7 +60,7 @@ export const apiService = {
    */
   async checkHealth() {
     try {
-      const response = await client.get('/health', { timeout: 3000 });
+      const response = await client.get('/health', { timeout: 65000 });
       return response.data;
     } catch (error) {
       console.error('API Error (health):', error);
