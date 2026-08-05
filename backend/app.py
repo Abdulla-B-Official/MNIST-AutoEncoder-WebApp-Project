@@ -10,8 +10,14 @@ from preprocessing import preprocess_image, postprocess_image
 
 # Initialize Flask app
 app = Flask(__name__)
-# Enable CORS for all routes (important for React frontend integration)
-CORS(app)
+
+# Enable CORS explicitly — required for cross-origin POST requests from Netlify
+# Generic CORS(app) can fail pre-flight OPTIONS for Content-Type: application/json
+CORS(app, resources={r"/*": {
+    "origins": "*",
+    "methods": ["GET", "POST", "OPTIONS"],
+    "allow_headers": ["Content-Type", "Authorization"]
+}})
 
 # Disable unnecessary TensorFlow warnings
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
